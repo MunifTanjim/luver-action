@@ -1,0 +1,25 @@
+name: 'Luver'
+description: 'Set up your GitHub Actions workflow with specific versions of Lua, LuaJIT, LuaRocks.'
+author: 'Munif Tanjim'
+inputs:
+  lua_versions:
+    description: 'Lua versions to install.'
+    required: false
+    default: ''
+  luajit_versions:
+    description: 'LuaJIT versions to install.'
+    required: false
+    default: ''
+  luarocks_versions:
+    description: 'LuaRocks versions to install.'
+    required: false
+    default: ''
+runs:
+  using: 'composite'
+  steps:
+    - run: ${{ github.action_path }}/setup-luver.sh
+      shell: bash
+      env:
+        INPUT_LUA_VERSIONS: ${{ inputs.lua_versions }}
+        INPUT_LUAJIT_VERSIONS: ${{ inputs.luajit_versions }}
+        INPUT_LUAROCKS_VERSIONS: ${{ inputs.luarocks_versions }}
