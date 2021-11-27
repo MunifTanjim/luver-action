@@ -1,6 +1,9 @@
-name: 'Luver'
-description: 'Set up your GitHub Actions workflow with specific versions of Lua, LuaJIT, LuaRocks.'
+name: 'Setup Lua with Luver'
+description: 'Set up your GitHub Actions workflow with specific versions of Lua, LuaJIT, LuaRocks using Luver.'
 author: 'Munif Tanjim'
+branding:
+  color: 'blue'
+  icon: 'moon'
 inputs:
   lua_versions:
     description: 'Lua versions to install.'
