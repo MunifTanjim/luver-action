@@ -21,7 +21,12 @@ echo "${PATH}" | tr ':' '\n' | grep "${LUVER_SRC}" >> ${GITHUB_PATH}
 echo "${PATH}" | tr ':' '\n' | grep "${LUVER_CURRENT_SRC}" >> ${GITHUB_PATH}
 
 if test -n "${INPUT_LUA_VERSIONS}" ; then
+  declare installed_lua_versions=" $(luver list lua | cut -d' ' -f1 | xargs) "
   for lua_version in ${INPUT_LUA_VERSIONS}; do
+    if echo "${installed_lua_versions}" | grep " ${lua_version} "; then
+      continue
+    fi
+
     luver install lua "${lua_version}"
   done
 fi
@@ -33,7 +38,7 @@ if test -n "${INPUT_LUAJIT_VERSIONS}" ; then
 
     luver use "${lua_version}"
 
-    declare current_luajit_version="$(luver current luajit)" 
+    declare current_luajit_version="$(luver current luajit)"
     if test -n "${current_luajit_version}"; then
       if test "${current_luajit_version}" == "${luajit_version}"; then
         continue
@@ -53,7 +58,7 @@ if test -n "${INPUT_LUAROCKS_VERSIONS}" ; then
 
     luver use "${lua_version}"
 
-    declare current_luarocks_version="$(luver current luarocks)" 
+    declare current_luarocks_version="$(luver current luarocks)"
     if test -n "${current_luarocks_version}"; then
       if test "${current_luarocks_version}" == "${luarocks_version}"; then
         continue
