@@ -8,7 +8,7 @@ mkdir -p "${LUVER_DIR}"
 if [[ -d "${LUVER_DIR}/self" ]]; then
   git -C "${LUVER_DIR}/self" pull --rebase --autostash
 else
-  git clone https://github.com/MunifTanjim/luver.git "${LUVER_DIR}/self" 
+  git clone https://github.com/MunifTanjim/luver.git "${LUVER_DIR}/self"
 fi
 
 source "${LUVER_DIR}/self/luver.bash"
@@ -42,4 +42,8 @@ if test -n "${INPUT_LUAROCKS_VERSIONS}" ; then
     luver use "${lua_version}"
     luver install luarocks "${luarocks_version}"
   done
+fi
+
+if test -n "${INPUT_DEFAULT}" ; then
+  luver alias "${INPUT_DEFAULT}" default
 fi

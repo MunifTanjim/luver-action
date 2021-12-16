@@ -5,6 +5,10 @@ branding:
   color: 'blue'
   icon: 'moon'
 inputs:
+  default:
+    description: 'Lua version to set as default.'
+    required: false
+    default: ''
   lua_versions:
     description: 'Lua versions to install.'
     required: false
@@ -23,6 +27,7 @@ runs:
     - run: ${{ github.action_path }}/setup-luver.sh
       shell: bash
       env:
+        INPUT_DEFAULT: ${{ inputs.default }}
         INPUT_LUA_VERSIONS: ${{ inputs.lua_versions }}
         INPUT_LUAJIT_VERSIONS: ${{ inputs.luajit_versions }}
         INPUT_LUAROCKS_VERSIONS: ${{ inputs.luarocks_versions }}
