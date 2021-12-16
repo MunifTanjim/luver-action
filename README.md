@@ -37,6 +37,19 @@ steps:
       luarocks --version
 ```
 
+**Set default lua version:**
+
+```yml
+steps:
+  - uses: actions/checkout@v2
+  - uses: MunifTanjim/luver-action@v1
+    with:
+      default: 5.1.5
+      lua_versions: 5.1.5 5.4.3
+  - run: |
+      lua -v
+```
+
 ## License
 
 Licensed under the MIT License. Check the [LICENSE](./LICENSE) file for details.
