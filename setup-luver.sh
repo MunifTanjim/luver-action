@@ -30,7 +30,18 @@ if test -n "${INPUT_LUAJIT_VERSIONS}" ; then
   for item in ${INPUT_LUAJIT_VERSIONS}; do
     declare lua_version="${item%:*}"
     declare luajit_version="${item#*:}"
+
     luver use "${lua_version}"
+
+    declare current_luajit_version="$(luver current luajit)" 
+    if test -n "${current_luajit_version}"; then
+      if test "${current_luajit_version}" == "${luajit_version}"; then
+        continue
+      fi
+
+      luver uninstall luajit
+    fi
+
     luver install luajit "${luajit_version}"
   done
 fi
@@ -39,7 +50,18 @@ if test -n "${INPUT_LUAROCKS_VERSIONS}" ; then
   for item in ${INPUT_LUAROCKS_VERSIONS}; do
     declare lua_version="${item%:*}"
     declare luarocks_version="${item#*:}"
+
     luver use "${lua_version}"
+
+    declare current_luarocks_version="$(luver current luarocks)" 
+    if test -n "${current_luarocks_version}"; then
+      if test "${current_luarocks_version}" == "${luarocks_version}"; then
+        continue
+      fi
+
+      luver uninstall luarocks
+    fi
+
     luver install luarocks "${luarocks_version}"
   done
 fi
