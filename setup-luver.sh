@@ -4,7 +4,12 @@ set -eo pipefail
 
 export LUVER_DIR="${HOME}/.local/share/luver"
 mkdir -p "${LUVER_DIR}"
-git clone https://github.com/MunifTanjim/luver.git "${LUVER_DIR}/self"
+
+if [[ -d "${LUVER_DIR}/self" ]]; then
+  git -C "${LUVER_DIR}/self" pull --rebase --autostash
+else
+  git clone https://github.com/MunifTanjim/luver.git "${LUVER_DIR}/self" 
+fi
 
 source "${LUVER_DIR}/self/luver.bash"
 
