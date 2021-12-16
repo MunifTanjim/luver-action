@@ -16,6 +16,7 @@ jobs:
       - name: Luver
         uses: ./
         with:
+          default: 5.4.3
           lua_versions: 5.1.5 5.4.3
           luajit_versions: 5.1.5:2.1.0-beta3
           luarocks_versions: 5.1.5:3.7.0 5.4.3:3.8.0
@@ -23,6 +24,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+
+          test "$(luver current lua)" = "5.4.3"
 
           luver use 5.1.5
 
