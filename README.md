@@ -28,7 +28,7 @@ steps:
   - uses: MunifTanjim/luver-action@v1
     with:
       lua_versions: 5.1.5 5.4.3
-      luajit_versions: 5.1.5:2.1.0-beta3
+      luajit_versions: 5.1.5:2.1
       luarocks_versions: 5.1.5:3.7.0 5.4.3:3.8.0
   - run: |
       luver use 5.1.5

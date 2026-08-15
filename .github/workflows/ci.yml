@@ -18,7 +18,7 @@ jobs:
         with:
           default: 5.4.3
           lua_versions: 5.1.5 5.4.3
-          luajit_versions: 5.1.5:2.1.0-beta3
+          luajit_versions: 5.1.5:2.1
           luarocks_versions: 5.1.5:3.7.0 5.4.3:3.8.0
       - name: Validate
         shell: bash
@@ -30,7 +30,7 @@ jobs:
           luver use 5.1.5
 
           test "$(luver current lua)" = "5.1.5"
-          test "$(luver current luajit)" = "2.1.0-beta3"
+          test "$(luver current luajit)" = "2.1"
           test "$(luver current luarocks)" = "3.7.0"
 
           luver use 5.4.3
