@@ -9,10 +9,12 @@ on:
 jobs:
   test:
     name: test
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
+      - name: Install Dependencies
+        run: sudo apt-get update; sudo apt-get install -y libreadline-dev
       - name: Luver
         uses: ./
         with:
